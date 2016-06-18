@@ -8,6 +8,13 @@ var plugins = require('gulp-load-plugins')({
 var src = 'client/';
 var dest = 'dest/public/';
 
+var jsFiles = [src + '**/*.js'];
+var jsFilesAndPackages = plugins.mainBowerFiles().concat(jsFiles);
+var scssFiles = [src + '**/*.scss'];
+var imageFiles = [src + '**/images/*.js'];
+
+console.log(jsFilesAndPackages);
+
 gulp.task('default', ['build', 'watch', 'start'], function() {
 	console.log('Task complete!');
 });
@@ -22,12 +29,12 @@ gulp.task('build', ['js', 'scss', 'images'], function() {
 });
 
 gulp.task('js', function() {
-	var jsFiles = [src + '**.js'];
-
-	gulp.src(plugins.mainBowerFiles().concat(jsFiles))
+	gulp.src(jsFilesAndPackages)
 		.pipe(plugins.filter('**/*.js'))
+		.pipe(plugins.environments.development(plugins.sourcemaps.init()))
 		.pipe(plugins.concat('main.js'))
-		//.pipe(plugins.uglify())
+		.pipe(plugins.environments.development(plugins.sourcemaps.write('.')))
+		.pipe(plugins.environments.production(plugins.uglify()))
 		.pipe(gulp.dest(dest + 'js'))
 		.pipe(plugins.livereload());
 });
@@ -40,9 +47,16 @@ gulp.task('images', function() {
 	return;
 });
 
+gulp.task('callback', function(cb) {
+	plugins.watch(jsFiles, function() {
+		console.log('js changed');
+	});
+});
+
 gulp.task('watch', function() {
 	plugins.livereload.listen();
-	gulp.watch(src + '**.js', ['js']);
-	//gulp.watch(src + 'client/scss/*.scss', ['sass']);
-	//gulp.watch(src + 'client/images/**/*', ['images']);
+
+	gulp.watch(jsFilesAndPackages, ['js']);
+	gulp.watch(scssFiles, ['sass']);
+	gulp.watch(imageFiles, ['images']);
  });

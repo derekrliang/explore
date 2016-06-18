@@ -4,7 +4,7 @@ const app = electron.app;
 
 const BrowserWindow = electron.BrowserWindow;
 
-let mainWindow
+let mainWindow;
 
 function createWindow () {
   // Create the browser window.
