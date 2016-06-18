@@ -1,1 +1,3 @@
-console.log("Router JS!")
+'use strict';
+
+console.log("Router JS!");
