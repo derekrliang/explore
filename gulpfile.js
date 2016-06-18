@@ -5,17 +5,20 @@ var plugins = require('gulp-load-plugins')({
 	replaceString: /\bgulp[\-.]/
 });
 
-var dest = 'dest/public';
+var dest = 'dest/public/';
 
-gulp.task('default', function() {
-	console.log('Hello!')
+gulp.task('default', ['js'], function() {
+	console.log("Task complete!")
 });
 
 gulp.task('js', function() {
-	var jsFiles = ['src/js/*'];
+	var coreJsFiles = ['client/*'];
+	//var appJsFiles = ['client/**'];
 
-	gulp.src(plugins.mainBowerFiles().concat(jsFiles))
-		.pipe(plugins.filter('*.js'))
+	console.log(plugins.mainBowerFiles());
+
+	gulp.src(plugins.mainBowerFiles().concat(coreJsFiles))
+		.pipe(plugins.filter('**/*.js'))
 		.pipe(plugins.concat('main.js'))
 		.pipe(plugins.uglify())
 		.pipe(gulp.dest(dest + 'js'));
