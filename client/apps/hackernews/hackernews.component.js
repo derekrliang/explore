@@ -37,6 +37,7 @@
 			$event.preventDefault();
 			const shell = require('electron').shell;
 			shell.openExternal(storyUrl);
+			shell.beep();
 		}
 	}
 

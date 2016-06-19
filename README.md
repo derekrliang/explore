@@ -16,3 +16,5 @@ npm start -- --env=production
 ```
 npm run build
 ```
+
+/play crickets
