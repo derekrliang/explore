@@ -20,16 +20,16 @@
 		};
 
 		function getTopStories() {
-			let ref = FIREBASE_HACKER_NEWS_DATABASE_REF.child(FIREBASE_HACKER_NEWS_TOP_STORIES);
-			let firstTen = ref.limitToFirst(10);
-			var obj = $firebaseArray(firstTen);
+			const ref = FIREBASE_HACKER_NEWS_DATABASE_REF.child(FIREBASE_HACKER_NEWS_TOP_STORIES);
+			const firstTen = ref.limitToFirst(10);
+			const obj = $firebaseArray(firstTen);
 
 			return obj;
 		}
 
 		function getStory(storyId) {
-			let ref = FIREBASE_HACKER_NEWS_DATABASE_REF.child(FIREBASE_HACKER_NEWS_STORY).child(storyId);
-			var obj = $firebaseObject(ref);
+			const ref = FIREBASE_HACKER_NEWS_DATABASE_REF.child(FIREBASE_HACKER_NEWS_STORY).child(storyId);
+			const obj = $firebaseObject(ref);
 
 			return obj;
 		}

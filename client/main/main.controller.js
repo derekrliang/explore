@@ -8,7 +8,7 @@
 	});
 
 	function MainController() {
-		let vm = this;
+		const vm = this;
 
 		vm.shared = require('electron').remote.getGlobal('sharedObject').someProperty
 	}
