@@ -12,20 +12,32 @@
 	function HackerNews(HackerNewsService) {
 		let vm = this;
 
-		let topStories = HackerNewsService.getTopStories();
+		vm.goToStory = goToStory;
 		vm.topStories = [];
 
-		topStories.$loaded().then(function() {
-			for (let i = 0; i < topStories.length; i++) {
-				let story = HackerNewsService.getStory(topStories.$getRecord(i).$value);
+		loadStories();
 
-				story.$loaded().then(function() {
-					vm.topStories.push(story);
-				});
-			};
+		function loadStories() {
+			let topStories = HackerNewsService.getTopStories();
 
-			console.log(vm.topStories);
-		});
+			topStories.$loaded().then(function() {
+				for (let i = 0; i < topStories.length; i++) {
+					let story = HackerNewsService.getStory(topStories.$getRecord(i).$value);
+
+					story.$loaded().then(function() {
+						vm.topStories.push(story);
+					});
+				};
+
+				console.log(vm.topStories);
+			});
+		}
+
+		function goToStory($event, storyUrl) {
+			$event.preventDefault();
+			const shell = require('electron').shell;
+			shell.openExternal(storyUrl);
+		}
 	}
 
 })();
