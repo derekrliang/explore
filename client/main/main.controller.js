@@ -8,7 +8,9 @@
 	});
 
 	function MainController() {
-		console.log("Main Controller!");
+		let vm = this;
+
+		vm.shared = require('electron').remote.getGlobal('sharedObject').someProperty
 	}
 
 })();

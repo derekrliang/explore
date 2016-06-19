@@ -6,6 +6,10 @@ const BrowserWindow = electron.BrowserWindow;
 
 let mainWindow;
 
+global.sharedObject = {
+  someProperty: 'default value'
+};
+
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({width: 800, height: 600});
