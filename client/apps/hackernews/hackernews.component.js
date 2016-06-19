@@ -27,14 +27,13 @@
 		});
 
 		function syncTopStories(storyArray) {
-			console.log(storyArray);
-
 			let stories = [];
 
 			for (let i = 0; i < storyArray.length; i++) {
 				const story = HackerNewsService.getStory(storyArray.$getRecord(i).$value);
 
 				story.$loaded().then(function() {
+
 					// A story without a url is a HN story
 					if (story.url === undefined) {
 						story.url = HackerNewsService.getHackerNewsUrl(story.id);

@@ -14,7 +14,7 @@
 		const FIREBASE_HACKER_NEWS_TOP_STORIES = 'topstories';
 		const FIREBASE_HACKER_NEWS_STORY = 'item';
 
-		const HACKER_NEWS_STORY_URL = 'https://news.ycombinator.com/item?id='
+		const HACKER_NEWS_STORY_URL = 'https://news.ycombinator.com/item?id=';
 
 		return {
 			getTopStories: getTopStories,
