@@ -13,22 +13,31 @@
 		const vm = this;
 
 		vm.goToStory = goToStory;
-		vm.topStories = [];
 
-		loadStories();
+		let topStoriesArray = HackerNewsService.getTopStories();
 
-		function loadStories() {
-			let topStories = HackerNewsService.getTopStories();
+		topStoriesArray.$loaded().then(function() {
+			syncTopStories(topStoriesArray);
 
-			topStories.$loaded().then(function() {
-				for (let i = 0; i < topStories.length; i++) {
-					const story = HackerNewsService.getStory(topStories.$getRecord(i).$value);
-
-					story.$loaded().then(function() {
-						vm.topStories.push(story);
-					});
-				};
+			topStoriesArray.$watch(function(event) {
+				console.log('Syncing top stories from Hacker News!');
+				console.log(event);
+				syncTopStories(topStoriesArray);
 			});
+		});
+
+		function syncTopStories(storyArray) {
+			let stories = [];
+
+			for (let i = 0; i < storyArray.length; i++) {
+				const story = HackerNewsService.getStory(storyArray.$getRecord(i).$value);
+
+				story.$loaded().then(function() {
+					stories.push(story);
+				});
+			};
+
+			vm.topStories = stories;
 		}
 
 		function goToStory($event, storyUrl) {
