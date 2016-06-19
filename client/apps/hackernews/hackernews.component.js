@@ -7,9 +7,9 @@
 		controller: HackerNews
 	});
 
-	HackerNews.$inject = ['HackerNewsService'];
+	HackerNews.$inject = ['$window', 'HackerNewsService'];
 
-	function HackerNews(HackerNewsService) {
+	function HackerNews($window, HackerNewsService) {
 		const vm = this;
 
 		vm.goToStory = goToStory;

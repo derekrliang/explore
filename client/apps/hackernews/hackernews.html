@@ -1,6 +1,5 @@
-<h1>HackerNews</h1>
-
+<h1>Hacker News</h1>
 <div ng-repeat="story in $ctrl.topStories">
 	<a ng-click="$ctrl.goToStory($event, story.url)" ng-href="{{story.url}}">{{story.title}}</a>
-	<h4>by {{story.by}}</h4>
+	<span>by {{story.by}}</span>
 </div>
