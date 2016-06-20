@@ -1,7 +1,6 @@
-'use strict';
-
 (function() {
-
+	'use strict';
+	
 	angular.module('app').component('hackerNews', {
 		templateUrl: 'apps/hackernews/hackernews.html',
 		controller: HackerNews
