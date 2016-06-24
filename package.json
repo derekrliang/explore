@@ -9,8 +9,12 @@
     "build": "gulp build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "derekrliang",
+    "email": "fr.derekliang@gmail.com",
+    "url": "github.com/derekrliang"
+  },
+  "license": "MIT",
   "devDependencies": {
     "electron-prebuilt": "^1.2.3",
     "gulp": "^3.9.1",
