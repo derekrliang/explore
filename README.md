@@ -1,3 +1,8 @@
+
+# explore
+
+![Picture of application](screenshot.png)
+
 # Getting Started
 
 ## Development
@@ -12,7 +17,11 @@ npm start -- --env=development
 npm start -- --env=production
 ```
 
-## Building
+## Build
 ```
 npm run build
 ```
+
+## License
+
+MIT © [derekrliang](https://github.com/derekrliang)
